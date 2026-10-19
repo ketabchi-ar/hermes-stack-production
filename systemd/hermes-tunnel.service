@@ -1,0 +1,16 @@
+[Unit]
+Description=Cloudflare Tunnel for Hermes WebUI
+After=network.target hermes-webui.service
+Wants=hermes-webui.service
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/cloudflared tunnel --url http://127.0.0.1:8787
+Restart=always
+RestartSec=5
+StandardOutput=file:/home/ubuntu/.hermes/cloudflared.log
+StandardError=file:/home/ubuntu/.hermes/cloudflared.log
+
+[Install]
+WantedBy=multi-user.target

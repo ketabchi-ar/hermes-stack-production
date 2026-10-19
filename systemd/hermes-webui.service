@@ -1,0 +1,22 @@
+[Unit]
+Description=Hermes WebUI Dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/hermes-webui
+EnvironmentFile=-/home/ubuntu/hermes-webui/.env
+Environment="HOME=/home/ubuntu"
+Environment="PATH=/usr/local/nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin:/home/ubuntu/.local/bin"
+Environment="HERMES_WEBUI_HOST=0.0.0.0"
+Environment="HERMES_WEBUI_PORT=8787"
+ExecStart=/home/ubuntu/.hermes/hermes-agent/venv/bin/python /home/ubuntu/hermes-webui/server.py
+Restart=always
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+.env
+.htpasswd
+node_modules/
+venv/
+dashboard-info.txt
+*.key
+*.pem
+credentials/

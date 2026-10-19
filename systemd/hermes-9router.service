@@ -1,0 +1,18 @@
+[Unit]
+Description=Hermes 9Router AI Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu
+Environment="HOME=/home/ubuntu"
+Environment="PATH=/usr/local/nvm/versions/node/v22.23.2/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/usr/local/bin/9router -p 20126 -H 127.0.0.1 -n -t --skip-update
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

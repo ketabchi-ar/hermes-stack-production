@@ -1,0 +1,16 @@
+[Unit]
+Description=Cloudflare Tunnel for 9Router
+After=network.target nginx.service hermes-9router.service
+Wants=nginx.service
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/cloudflared tunnel --url http://127.0.0.1:20128
+Restart=always
+RestartSec=5
+StandardOutput=file:/home/ubuntu/.hermes/cloudflared-9router.log
+StandardError=file:/home/ubuntu/.hermes/cloudflared-9router.log
+
+[Install]
+WantedBy=multi-user.target
